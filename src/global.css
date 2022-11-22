@@ -1,0 +1,12 @@
+:root {
+  --black: #19282F;
+  --orange: #FF731D;
+  --green: #3A6351;
+  --blue: #293462;
+  --red: #B33030;
+}
+
+@font-face {
+  font-family: "Orbitron";
+  src: url("./assets/fonts/Orbitron-Regular.ttf") format("truetype");
+}
