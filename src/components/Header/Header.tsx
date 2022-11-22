@@ -7,9 +7,11 @@ import './header.css';
 export default function Header() {
   return (
     <header>
-      <HomeIcon sx={{color: "white", fontSize: "28px"}} />
-      <Timer />
-      <Counter />
+      <div className='header-content'>
+        <HomeIcon sx={{color: "white", fontSize: "28px"}} />
+        <Timer />
+        <Counter />
+      </div>
     </header>
   )
 };
