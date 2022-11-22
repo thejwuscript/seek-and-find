@@ -1,0 +1,17 @@
+.counter-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 34px;
+  height: 34px;
+  position: relative;
+  background-color: var(--red);
+  color: white;
+  border-radius: 50%;
+  margin-left: 0;
+}
+
+.counter-number {
+  font-weight: 600;
+  font-size: 24px;
+}
