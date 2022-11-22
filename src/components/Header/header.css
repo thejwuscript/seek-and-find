@@ -1,11 +1,13 @@
 header {
-  --header-height: 50px;
+  --header-height: 56px;
 
   height: var(--header-height);
   background-color: var(--black);
   display: flex;
   align-items: center;
   justify-content: center;
+  position: sticky;
+  top: 0;
 }
 
 .header-content {
