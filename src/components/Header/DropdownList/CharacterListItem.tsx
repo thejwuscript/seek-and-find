@@ -11,7 +11,7 @@ export default function CharacterListItem({
   name,
 }: CharacterListItemProps) {
   return (
-    <ListItem alignItems="center">
+    <ListItem alignItems="center" sx={{gap: "28px"}}>
       <img src={imageSrc} alt={name} className="character-image" />
       <ListItemText primary={name} />
     </ListItem>
