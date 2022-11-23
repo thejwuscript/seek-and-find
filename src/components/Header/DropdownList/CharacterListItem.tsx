@@ -4,21 +4,23 @@ import { ListItem, ListItemText } from "@mui/material";
 type CharacterListItemProps = {
   imageSrc: string;
   name: string;
+  itemStyles: object;
+  textStyles: object;
 };
-
-const textStyles = {
-  fontSize: "20px",
-  fontWeight: "600"
-}
 
 export default function CharacterListItem({
   imageSrc,
   name,
+  itemStyles,
+  textStyles,
 }: CharacterListItemProps) {
   return (
-    <ListItem alignItems="center" sx={{gap: "28px"}}>
+    <ListItem alignItems="center" sx={itemStyles}>
       <img src={imageSrc} alt={name} className="character-image" />
-      <ListItemText primary={name} primaryTypographyProps={{ style: textStyles }} />
+      <ListItemText
+        primary={name}
+        primaryTypographyProps={{ style: textStyles }}
+      />
     </ListItem>
   );
 }

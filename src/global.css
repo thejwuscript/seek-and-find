@@ -49,12 +49,16 @@
 }
 
 html {
-  min-height: 100%;
+  min-height: max(100%, 660px);
   background-color: var(--black);
 }
 
 #root {
   background-color: var(--black);
+}
+
+body {
+  overflow: hidden;
 }
 
 .hidden {

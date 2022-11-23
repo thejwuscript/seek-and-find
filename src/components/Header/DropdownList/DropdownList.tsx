@@ -13,13 +13,32 @@ type Props = {
 
 export default function DropdownList({ isShowing }: Props) {
   const listClassName = `dropdown-character-list ${isShowing ? "" : "hidden"}`;
+  const textStyles = {
+    fontSize: "20px",
+    fontWeight: "600",
+  };
 
   return (
     <StyledEngineProvider injectFirst>
       <List className={listClassName}>
-        <CharacterListItem imageSrc={farnsworth} name="Farnsworth" />
-        <CharacterListItem imageSrc={pacman} name="Pac-Man" />
-        <CharacterListItem imageSrc={mike} name="Mike" />
+        <CharacterListItem
+          imageSrc={farnsworth}
+          name="Farnsworth"
+          itemStyles={{ gap: "28px" }}
+          textStyles={textStyles}
+        />
+        <CharacterListItem
+          imageSrc={pacman}
+          name="Pac-Man"
+          itemStyles={{ gap: "28px" }}
+          textStyles={textStyles}
+        />
+        <CharacterListItem
+          imageSrc={mike}
+          name="Mike"
+          itemStyles={{ gap: "28px" }}
+          textStyles={textStyles}
+        />
       </List>
     </StyledEngineProvider>
   );

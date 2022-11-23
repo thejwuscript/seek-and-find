@@ -1,12 +1,22 @@
 import React from "react";
 import "./homeModal.css";
 import Image from "../../assets/images/robot_city.jpg";
+import CharacterListItem from "../Header/DropdownList/CharacterListItem";
+import farnsworth from "../../assets/images/farnsworth.png";
+import pacman from "../../assets/images/pacman.png";
+import mike from "../../assets/images/mike.png";
+import Button from "@mui/material/Button";
 
 type Props = {
   open: boolean;
 };
 
 export default function HomeModal({ open }: Props) {
+  const textStyles = {
+    fontSize: "14px",
+    fontWeight: "normal",
+  };
+
   return (
     <div className="modal-background">
       <div>
@@ -25,9 +35,44 @@ export default function HomeModal({ open }: Props) {
             </p>
           </div>
           <div className="characters">
-            
+            <CharacterListItem
+              imageSrc={farnsworth}
+              name="Farnsworth"
+              itemStyles={{
+                flexDirection: "column",
+                justifyContent: "space-between",
+              }}
+              textStyles={textStyles}
+            />
+            <CharacterListItem
+              imageSrc={pacman}
+              name="Pac-Man"
+              itemStyles={{
+                flexDirection: "column",
+                justifyContent: "space-between",
+              }}
+              textStyles={textStyles}
+            />
+            <CharacterListItem
+              imageSrc={mike}
+              name="Mike"
+              itemStyles={{
+                flexDirection: "column",
+                justifyContent: "space-between",
+              }}
+              textStyles={textStyles}
+            />
           </div>
-          <div className="modal-footer"></div>
+          <div className="modal-footer">
+            <Button
+              variant="contained"
+              color="success"
+              size="large"
+              sx={{ fontWeight: "800" }}
+            >
+              Start!
+            </Button>
+          </div>
         </div>
       </div>
     </div>
