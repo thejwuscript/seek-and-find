@@ -6,6 +6,7 @@ import farnsworth from "../../assets/images/farnsworth.png";
 import pacman from "../../assets/images/pacman.png";
 import mike from "../../assets/images/mike.png";
 import Button from "@mui/material/Button";
+import CircularProgress from '@mui/material/CircularProgress';
 
 type Props = {
   open: boolean;
@@ -64,14 +65,15 @@ export default function HomeModal({ open }: Props) {
             />
           </div>
           <div className="modal-footer">
-            <Button
+            {/* <Button
               variant="contained"
               color="success"
               size="large"
               sx={{ fontWeight: "800" }}
             >
               Start!
-            </Button>
+            </Button> */}
+            <CircularProgress color="inherit" />
           </div>
         </div>
       </div>
