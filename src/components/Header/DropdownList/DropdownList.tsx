@@ -5,12 +5,18 @@ import pacman from "../../../assets/images/pacman.png";
 import mike from "../../../assets/images/mike.png";
 import "./dropdownList.css";
 import CharacterListItem from "./CharacterListItem";
-import { StyledEngineProvider } from '@mui/material/styles';
+import { StyledEngineProvider } from "@mui/material/styles";
 
-export default function DropdownList() {
+type Props = {
+  isShowing: boolean;
+};
+
+export default function DropdownList({ isShowing }: Props) {
+  const listClassName = `dropdown-character-list ${isShowing ? "" : "hidden"}`;
+
   return (
     <StyledEngineProvider injectFirst>
-      <List className="dropdown-character-list">
+      <List className={listClassName}>
         <CharacterListItem imageSrc={farnsworth} name="Farnsworth" />
         <CharacterListItem imageSrc={pacman} name="Pac-Man" />
         <CharacterListItem imageSrc={mike} name="Mike" />

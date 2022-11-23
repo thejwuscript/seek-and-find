@@ -1,11 +1,18 @@
+import React, { useState } from "react";
 import DropdownList from "../DropdownList/DropdownList";
-import './counter.css';
+import "./counter.css";
 
 export default function Counter() {
+  const [showingList, setShowingList] = useState(false);
+
+  const handleCounterClick = () => {
+    setShowingList(!showingList);
+  };
+
   return (
-    <div className="counter-container">
+    <div className="counter-container" onClick={handleCounterClick}>
       <span className="counter-number">3</span>
-      <DropdownList />
+      <DropdownList isShowing={showingList} />
     </div>
   );
 }
