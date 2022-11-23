@@ -1,0 +1,33 @@
+.modal-background {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.9);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-background > div {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 48px;
+}
+
+.game-title {
+  color: white;
+}
+
+.modal-box {
+  width: min(95%, 400px);
+  height: 300px;
+  background-color: white;
+  border-radius: 15px;
+}
