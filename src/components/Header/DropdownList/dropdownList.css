@@ -4,7 +4,8 @@
   top: 45px;
   background-color: #696969;
   opacity: 0.9;
-  width: 240px;
+  width: 250px;
+  border-radius: 10px;
 }
 
 .character-image {

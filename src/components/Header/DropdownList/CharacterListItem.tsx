@@ -6,6 +6,11 @@ type CharacterListItemProps = {
   name: string;
 };
 
+const textStyles = {
+  fontSize: "20px",
+  fontWeight: "600"
+}
+
 export default function CharacterListItem({
   imageSrc,
   name,
@@ -13,7 +18,7 @@ export default function CharacterListItem({
   return (
     <ListItem alignItems="center" sx={{gap: "28px"}}>
       <img src={imageSrc} alt={name} className="character-image" />
-      <ListItemText primary={name} />
+      <ListItemText primary={name} primaryTypographyProps={{ style: textStyles }} />
     </ListItem>
   );
 }
