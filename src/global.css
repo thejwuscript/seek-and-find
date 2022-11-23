@@ -5,9 +5,9 @@
 }
 
 @font-face {
- font-family: "Orbitron";
- src: url("./assets/fonts/Orbitron-Medium.ttf") format("truetype");
- font-weight: 500;
+  font-family: "Orbitron";
+  src: url("./assets/fonts/Orbitron-Medium.ttf") format("truetype");
+  font-weight: 500;
 }
 
 @font-face {
@@ -35,11 +35,11 @@
 }
 
 :root {
-  --black: #19282F;
-  --orange: #FF731D;
-  --green: #3A6351;
+  --black: #19282f;
+  --orange: #ff731d;
+  --green: #3a6351;
   --blue: #293462;
-  --red: #B33030;
+  --red: #b33030;
 }
 
 html {
@@ -49,4 +49,8 @@ html {
 
 #root {
   background-color: var(--black);
+}
+
+.hidden {
+  display: none;
 }
