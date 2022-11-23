@@ -9,7 +9,7 @@ function App() {
     <div>
       <Header />
       <MainImage />
-      <HomeModal open={showingHome}/>
+      <HomeModal open={showingHome} />
     </div>
   );
 }
