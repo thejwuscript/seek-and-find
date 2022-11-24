@@ -1,28 +1,27 @@
 import React from "react";
-import "./homeModal.css";
-import Image from "../../assets/images/robot_city.jpg";
 import CharacterListItem from "../Header/DropdownList/CharacterListItem";
+import Image from "../../assets/images/robot_city.jpg";
 import farnsworth from "../../assets/images/farnsworth.png";
 import pacman from "../../assets/images/pacman.png";
 import mike from "../../assets/images/mike.png";
 import Button from "@mui/material/Button";
 import CircularProgress from "@mui/material/CircularProgress";
+import "./homeModal.css";
 
 type Props = {
-  open: boolean;
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setGameStart: React.Dispatch<React.SetStateAction<boolean>>;
   gameReady: boolean;
 };
 
-export default function HomeModal({ open, setOpen, gameReady }: Props) {
+export default function HomeModal({ setGameStart, gameReady }: Props) {
   const textStyles = {
     fontSize: "14px",
     fontWeight: "normal",
   };
 
   const handleStartClick = () => {
-    setOpen(false);
-  }
+    setGameStart(true);
+  };
 
   let startButton;
 

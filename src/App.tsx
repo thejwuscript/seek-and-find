@@ -4,24 +4,20 @@ import MainImage from "./components/Main/MainImage";
 import HomeModal from "./components/Modal/HomeModal";
 
 function App() {
-  const [showingHome, setShowingHome] = useState(true);
+  const [gameStart, setGameStart] = useState(false);
   const [mainImageLoaded, setMainImageLoaded] = useState(false);
 
   useEffect(() => {
-    if (showingHome) document.body.style.overflowY = "hidden";
+    if (!gameStart) document.body.style.overflowY = "hidden";
     else document.body.style.overflowY = "scroll";
-  }, [showingHome]);
+  }, [gameStart]);
 
   return (
     <div>
-      <Header />
+      <Header gameStart={gameStart} />
       <MainImage setImageLoaded={setMainImageLoaded} />
-      {showingHome && (
-        <HomeModal
-          open={showingHome}
-          setOpen={setShowingHome}
-          gameReady={mainImageLoaded}
-        />
+      {!gameStart && (
+        <HomeModal setGameStart={setGameStart} gameReady={mainImageLoaded} />
       )}
     </div>
   );
