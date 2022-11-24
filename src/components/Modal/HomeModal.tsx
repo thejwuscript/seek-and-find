@@ -10,14 +10,19 @@ import CircularProgress from "@mui/material/CircularProgress";
 
 type Props = {
   open: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
   gameReady: boolean;
 };
 
-export default function HomeModal({ open, gameReady }: Props) {
+export default function HomeModal({ open, setOpen, gameReady }: Props) {
   const textStyles = {
     fontSize: "14px",
     fontWeight: "normal",
   };
+
+  const handleStartClick = () => {
+    setOpen(false);
+  }
 
   let startButton;
 
@@ -28,6 +33,7 @@ export default function HomeModal({ open, gameReady }: Props) {
         color="success"
         size="large"
         sx={{ fontWeight: "800" }}
+        onClick={handleStartClick}
         disableElevation
       >
         Start!
