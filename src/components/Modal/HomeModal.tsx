@@ -73,7 +73,7 @@ export default function HomeModal({ open }: Props) {
             >
               Start!
             </Button> */}
-            <CircularProgress color="inherit" />
+            <CircularProgress color="inherit" style={{width: "32px", height: "32px"}} />
           </div>
         </div>
       </div>
