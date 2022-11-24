@@ -3,7 +3,7 @@ import Counter from "./Counter/Counter";
 import HomeIcon from "@mui/icons-material/Home";
 import Timer from "./Timer/Timer";
 import "./header.css";
-import "./timer.css";
+import "./Timer/timer.css";
 
 type Props = {
   gameStart: boolean;
