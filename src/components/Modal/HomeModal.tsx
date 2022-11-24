@@ -6,17 +6,41 @@ import farnsworth from "../../assets/images/farnsworth.png";
 import pacman from "../../assets/images/pacman.png";
 import mike from "../../assets/images/mike.png";
 import Button from "@mui/material/Button";
-import CircularProgress from '@mui/material/CircularProgress';
+import CircularProgress from "@mui/material/CircularProgress";
 
 type Props = {
   open: boolean;
+  gameReady: boolean;
 };
 
-export default function HomeModal({ open }: Props) {
+export default function HomeModal({ open, gameReady }: Props) {
   const textStyles = {
     fontSize: "14px",
     fontWeight: "normal",
   };
+
+  let startButton;
+
+  if (gameReady) {
+    startButton = (
+      <Button
+        variant="contained"
+        color="success"
+        size="large"
+        sx={{ fontWeight: "800" }}
+        disableElevation
+      >
+        Start!
+      </Button>
+    );
+  } else {
+    startButton = (
+      <CircularProgress
+        color="inherit"
+        style={{ width: "32px", height: "32px" }}
+      />
+    );
+  }
 
   return (
     <div className="modal-background">
@@ -64,17 +88,7 @@ export default function HomeModal({ open }: Props) {
               textStyles={textStyles}
             />
           </div>
-          <div className="modal-footer">
-            {/* <Button
-              variant="contained"
-              color="success"
-              size="large"
-              sx={{ fontWeight: "800" }}
-            >
-              Start!
-            </Button> */}
-            <CircularProgress color="inherit" style={{width: "32px", height: "32px"}} />
-          </div>
+          <div className="modal-footer">{startButton}</div>
         </div>
       </div>
     </div>

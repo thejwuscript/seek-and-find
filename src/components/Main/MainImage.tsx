@@ -2,10 +2,19 @@ import React from "react";
 import robotCity from "../../assets/images/robot_city.jpg";
 import "./mainImage.css";
 
-export default function MainImage() {
+type Props = {
+  setImageLoaded: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+export default function MainImage({ setImageLoaded }: Props) {
   return (
     <div>
-      <img src={robotCity} alt="main" className="main-image" />
+      <img
+        src={robotCity}
+        alt="main"
+        className="main-image"
+        onLoad={() => setImageLoaded(true)}
+      />
     </div>
   );
 }

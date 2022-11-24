@@ -5,6 +5,7 @@ import HomeModal from "./components/Modal/HomeModal";
 
 function App() {
   const [showingHome, setShowingHome] = useState(true);
+  const [mainImageLoaded, setMainImageLoaded] = useState(false);
 
   useEffect(() => {
     if (showingHome) document.body.style.overflow = "hidden";
@@ -14,8 +15,8 @@ function App() {
   return (
     <div>
       <Header />
-      <MainImage />
-      <HomeModal open={showingHome} />
+      <MainImage setImageLoaded={setMainImageLoaded} />
+      <HomeModal open={showingHome} gameReady={mainImageLoaded} />
     </div>
   );
 }
