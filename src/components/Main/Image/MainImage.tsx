@@ -1,5 +1,6 @@
 import React from "react";
-import robotCity from "../../assets/images/robot_city.jpg";
+import ContextMenu from '../ContextMenu/ContextMenu';
+import robotCity from "../../../assets/images/robot_city.jpg";
 import "./mainImage.css";
 
 type Props = {
@@ -15,6 +16,7 @@ export default function MainImage({ setImageLoaded }: Props) {
         className="main-image"
         onLoad={() => setImageLoaded(true)}
       />
+      <ContextMenu />
     </div>
   );
 }

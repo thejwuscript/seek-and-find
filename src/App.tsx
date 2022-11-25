@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Header from "./components/Header/Header";
-import MainImage from "./components/Main/MainImage";
+import MainImage from "./components/Main/Image/MainImage";
 import HomeModal from "./components/Modal/HomeModal";
 
 function App() {
