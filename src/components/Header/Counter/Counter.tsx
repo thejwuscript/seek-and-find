@@ -10,7 +10,7 @@ export default function Counter() {
   };
 
   return (
-    <div className="counter-container" onClick={handleCounterClick}>
+    <div className="counter-container" onClick={handleCounterClick} style={{cursor: "pointer"}}>
       <span className="counter-number">3</span>
       <DropdownList isShowing={showingList} />
     </div>
