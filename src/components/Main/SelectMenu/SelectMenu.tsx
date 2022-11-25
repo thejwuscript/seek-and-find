@@ -3,7 +3,12 @@ import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
 
-export default function SelectMenu() {
+type Props = {
+  posX: number;
+  posY: number;
+}
+
+export default function SelectMenu({posX, posY}: Props) {
   //const handleClick = (e) => e.stopPropagation();
 
   return (
@@ -12,8 +17,8 @@ export default function SelectMenu() {
       direction="column"
       style={{
         position: "absolute",
-        top: "100px",
-        right: "50px",
+        left: `${posX}px`,
+        top: `${posY}px`,
         backgroundColor: "var(--black)",
         borderRadius: "10px",
         padding: "8px"
