@@ -3,12 +3,13 @@ import Header from "./components/Header/Header";
 import MainImage from "./components/Main/Image/MainImage";
 import HomeModal from "./components/Modal/HomeModal";
 import { db } from "./firebase-config";
-import { collection, DocumentData, getDocs } from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 
 type Character = {
   name: string;
   posX: Range;
-  poxY: Range;
+  posY: Range;
+  isFound: boolean;
 };
 
 type Range = {
@@ -19,7 +20,7 @@ type Range = {
 function App() {
   const [gameStart, setGameStart] = useState(false);
   const [mainImageLoaded, setMainImageLoaded] = useState(false);
-  const [characters, setCharacters] = useState<DocumentData[]>([]);
+  const [characters, setCharacters] = useState<Character[]>([]);
 
   useEffect(() => {
     if (!gameStart) document.body.style.overflowY = "hidden";
@@ -28,10 +29,13 @@ function App() {
 
   useEffect(() => {
     const charactersData = async () => {
-      let array: DocumentData[] = [];
+      let arrayOfCharacters: Character[] = [];
       const querySnapshot = await getDocs(collection(db, "Characters"));
-      querySnapshot.forEach((doc) => array.push(doc.data()));
-      return array;
+      querySnapshot.forEach((doc) => {
+        const { name, posX, posY } = doc.data();
+        arrayOfCharacters.push({ name, posX, posY, isFound: false });
+      });
+      return arrayOfCharacters;
     };
 
     charactersData().then((data) => setCharacters(data));
@@ -40,7 +44,7 @@ function App() {
   return (
     <div>
       <Header gameStart={gameStart} setGameStart={setGameStart} />
-      <MainImage setImageLoaded={setMainImageLoaded} />
+      <MainImage setImageLoaded={setMainImageLoaded} characters={characters} />
       {!gameStart && (
         <HomeModal setGameStart={setGameStart} gameReady={mainImageLoaded} />
       )}
@@ -49,3 +53,4 @@ function App() {
 }
 
 export default App;
+export type { Character };
