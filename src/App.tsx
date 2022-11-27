@@ -41,10 +41,21 @@ function App() {
     charactersData().then((data) => setCharacters(data));
   }, []);
 
+  const changeFoundStatus = (index: number): void => {
+    const copiedListOfCharacters = characters.slice();
+    const foundCharacter = { ...copiedListOfCharacters[index], isFound: true };
+    copiedListOfCharacters[index] = foundCharacter;
+    setCharacters(copiedListOfCharacters);
+  };
+
   return (
     <div>
       <Header gameStart={gameStart} setGameStart={setGameStart} />
-      <MainImage setImageLoaded={setMainImageLoaded} characters={characters} setCharacters={setCharacters} />
+      <MainImage
+        setImageLoaded={setMainImageLoaded}
+        characters={characters}
+        changeFoundStatus={changeFoundStatus}
+      />
       {!gameStart && (
         <HomeModal setGameStart={setGameStart} gameReady={mainImageLoaded} />
       )}

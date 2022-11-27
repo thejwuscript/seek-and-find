@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, VoidFunctionComponent } from "react";
 import SelectMenu from "../SelectMenu/SelectMenu";
 import robotCity from "../../../assets/images/robot_city.jpg";
 import type { Character } from "../../../App";
@@ -7,10 +7,14 @@ import "./mainImage.css";
 type Props = {
   setImageLoaded: React.Dispatch<React.SetStateAction<boolean>>;
   characters: Character[];
-  setCharacters: React.Dispatch<React.SetStateAction<Character[]>>;
+  changeFoundStatus: (index: number) => void;
 };
 
-export default function MainImage({ setImageLoaded, characters, setCharacters }: Props) {
+export default function MainImage({
+  setImageLoaded,
+  characters,
+  changeFoundStatus,
+}: Props) {
   const [isMenuVisible, setIsMenuVisible] = useState(false);
   const [position, setPosition] = useState<number[]>([]);
   const imgRef = useRef<HTMLImageElement>(null!);
@@ -25,25 +29,25 @@ export default function MainImage({ setImageLoaded, characters, setCharacters }:
     const clickedPosX = position[0] / window.innerWidth;
     const clickedPosY = (position[1] - 56) / imgRef.current.height;
     const clickedName = target.value;
-    for (let i = 0; i < 3; i++) {
-      let character = characters[i];
-      if (
-        clickedName === character.name &&
+    const isAMatch = (character: Character) => {
+      return clickedName === character.name &&
         clickedPosX > character.posX.min &&
         clickedPosX < character.posX.max &&
         clickedPosY > character.posY.min &&
-        clickedPosY < character.posY.max
-      ) {
-        const copiedListOfCharacters = characters.slice();
-        const foundCharacter = {...copiedListOfCharacters[i], isFound: true };
-        copiedListOfCharacters[i] = foundCharacter;
-        setCharacters(copiedListOfCharacters);
+        clickedPosY < character.posY.max;
+    };
+
+    for (let i = 0; i < 3; i++) {
+      if (isAMatch(characters[i])) {
+        changeFoundStatus(i);
         break;
       } else {
         console.log("it's a miss!");
       }
     }
   };
+
+  
 
   return (
     <div onClick={handleImageClick}>
