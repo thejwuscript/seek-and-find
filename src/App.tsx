@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Header from "./components/Header/Header";
 import MainImage from "./components/Main/Image/MainImage";
 import HomeModal from "./components/Modal/HomeModal";
-import Feedback from './components/Feedback';
+import Feedback from "./components/Feedback";
 import { db } from "./firebase-config";
 import { collection, getDocs } from "firebase/firestore";
 
@@ -22,7 +22,8 @@ function App() {
   const [gameStart, setGameStart] = useState(false);
   const [mainImageLoaded, setMainImageLoaded] = useState(false);
   const [characters, setCharacters] = useState<Character[]>([]);
-  const [feedback, setFeedback] = useState('');
+  const [feedback, setFeedback] = useState("");
+  const [gameOver, setGameOver] = useState(false);
 
   useEffect(() => {
     if (!gameStart) document.body.style.overflowY = "hidden";
@@ -43,6 +44,15 @@ function App() {
     charactersData().then((data) => setCharacters(data));
   }, []);
 
+  const remainingCount = characters.reduce((result, character) => {
+    if (character.isFound) result -= 1;
+    return result;
+  }, 3);
+
+  useEffect(() => {
+    if (remainingCount === 0) setGameOver(true);
+  }, [remainingCount]);
+
   const changeFoundStatus = (index: number): void => {
     const copiedListOfCharacters = characters.slice();
     const foundCharacter = { ...copiedListOfCharacters[index], isFound: true };
@@ -50,27 +60,36 @@ function App() {
     setCharacters(copiedListOfCharacters);
   };
 
-  const changeFeedback = (message: string = ''): void => {
-    setFeedback(''); // empty string to dismount Feedback
+  const changeFeedback = (message: string = ""): void => {
+    setFeedback(""); // empty string to dismount Feedback
     setTimeout(() => setFeedback(message), 0); // then mount Feedback again with the proper message
-  }
+  };
 
-  const handleCloseSnackBar = (event: React.SyntheticEvent<any> | Event, reason: string | undefined) => {
-    if (reason === 'clickaway') return; // prevent snackbar from closing on clickaway
+  const handleCloseSnackBar = (
+    event: React.SyntheticEvent<any> | Event,
+    reason: string | undefined
+  ) => {
+    if (reason === "clickaway") return; // prevent snackbar from closing on clickaway
 
-    setFeedback('');
-  }
+    setFeedback("");
+  };
 
   return (
     <div>
-      <Header gameStart={gameStart} setGameStart={setGameStart} />
+      <Header
+        gameStart={gameStart}
+        setGameStart={setGameStart}
+        count={remainingCount}
+      />
       <MainImage
         setImageLoaded={setMainImageLoaded}
         characters={characters}
         changeFoundStatus={changeFoundStatus}
         changeFeedback={changeFeedback}
       />
-      {feedback && <Feedback message={feedback} handleClose={handleCloseSnackBar}/>}
+      {feedback && (
+        <Feedback message={feedback} handleClose={handleCloseSnackBar} />
+      )}
       {!gameStart && (
         <HomeModal setGameStart={setGameStart} gameReady={mainImageLoaded} />
       )}

@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import DropdownList from "../DropdownList/DropdownList";
 import "./counter.css";
 
-export default function Counter() {
+type Props = {
+  count: number;
+};
+
+export default function Counter({ count }: Props) {
   const [showingList, setShowingList] = useState(false);
 
   const handleCounterClick = () => {
@@ -10,8 +14,12 @@ export default function Counter() {
   };
 
   return (
-    <div className="counter-container" onClick={handleCounterClick} style={{cursor: "pointer"}}>
-      <span className="counter-number">3</span>
+    <div
+      className="counter-container"
+      onClick={handleCounterClick}
+      style={{ cursor: "pointer" }}
+    >
+      <span className="counter-number">{count}</span>
       <DropdownList isShowing={showingList} />
     </div>
   );

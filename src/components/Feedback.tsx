@@ -10,25 +10,26 @@ type Props = {
   ) => void;
 };
 
-
 export default function Feedback({ message, handleClose }: Props) {
   let severity: AlertColor;
 
-  if (message.includes('Keep looking!')) {
-    severity = 'error';
+  if (message.includes("Keep looking!")) {
+    severity = "error";
   } else {
-    severity = 'success';
+    severity = "success";
   }
 
   return (
     <Snackbar
-      anchorOrigin={{vertical: 'top', horizontal: 'right'}}
+      anchorOrigin={{ vertical: "top", horizontal: "right" }}
       open={!!message}
       autoHideDuration={3000}
       onClose={handleClose}
-      style={{top: "80px"}}
+      style={{ top: "80px" }}
     >
-      <Alert onClose={handleClose} severity={severity}>{message}</Alert>
+      <Alert onClose={handleClose} severity={severity}>
+        {message}
+      </Alert>
     </Snackbar>
   );
 }

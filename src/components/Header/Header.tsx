@@ -8,9 +8,10 @@ import "./Timer/timer.css";
 type Props = {
   gameStart: boolean;
   setGameStart: React.Dispatch<React.SetStateAction<boolean>>;
+  count: number;
 };
 
-export default function Header({ gameStart, setGameStart }: Props) {
+export default function Header({ gameStart, setGameStart, count }: Props) {
   let timer = gameStart ? <Timer /> : <div className="timer">00:00</div>;
   return (
     <header>
@@ -20,7 +21,7 @@ export default function Header({ gameStart, setGameStart }: Props) {
           onClick={() => setGameStart(false)}
         />
         {timer}
-        <Counter />
+        <Counter count={count} />
       </div>
     </header>
   );
