@@ -44,7 +44,7 @@ function App() {
   return (
     <div>
       <Header gameStart={gameStart} setGameStart={setGameStart} />
-      <MainImage setImageLoaded={setMainImageLoaded} characters={characters} />
+      <MainImage setImageLoaded={setMainImageLoaded} characters={characters} setCharacters={setCharacters} />
       {!gameStart && (
         <HomeModal setGameStart={setGameStart} gameReady={mainImageLoaded} />
       )}
