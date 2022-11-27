@@ -6,6 +6,7 @@ type CharacterListItemProps = {
   name: string;
   itemStyles: object;
   textStyles: object;
+  isFound?: boolean;
 };
 
 export default function CharacterListItem({
@@ -13,7 +14,10 @@ export default function CharacterListItem({
   name,
   itemStyles,
   textStyles,
+  isFound,
 }: CharacterListItemProps) {
+  if (isFound) itemStyles = { ...itemStyles, filter: "brightness(50%)" };
+
   return (
     <ListItem alignItems="center" sx={itemStyles}>
       <img src={imageSrc} alt={name} className="character-image" />
