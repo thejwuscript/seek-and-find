@@ -42,12 +42,10 @@ export default function MainImage({
     for (let i = 0; i < 3; i++) {
       if (isAMatch(characters[i])) {
         changeFoundStatus(i);
-        changeFeedback('');
-        setTimeout(() => changeFeedback(`You've found ${clickedName}`), 0)
+        changeFeedback(`You've found ${clickedName}!`);
         break;
       } else {
-        changeFeedback('');
-        setTimeout(() => changeFeedback("Keep looking!"), 0)
+        changeFeedback('Keep looking!');
       }
     }
   };

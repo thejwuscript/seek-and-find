@@ -51,7 +51,14 @@ function App() {
   };
 
   const changeFeedback = (message: string = ''): void => {
-    setFeedback(message);
+    setFeedback(''); // empty string to dismount Feedback
+    setTimeout(() => setFeedback(message), 0); // then mount Feedback again with the proper message
+  }
+
+  const handleCloseSnackBar = (event: React.SyntheticEvent<any> | Event, reason: string) => {
+    if (reason === 'clickaway') return; // prevent snackbar from closing on clickaway
+
+    setFeedback('');
   }
 
   return (
@@ -63,7 +70,7 @@ function App() {
         changeFoundStatus={changeFoundStatus}
         changeFeedback={changeFeedback}
       />
-      {feedback && <Feedback message={feedback} closeSnackBar={changeFeedback}/>}
+      {feedback && <Feedback message={feedback} handleClose={handleCloseSnackBar}/>}
       {!gameStart && (
         <HomeModal setGameStart={setGameStart} gameReady={mainImageLoaded} />
       )}
