@@ -55,7 +55,7 @@ function App() {
     setTimeout(() => setFeedback(message), 0); // then mount Feedback again with the proper message
   }
 
-  const handleCloseSnackBar = (event: React.SyntheticEvent<any> | Event, reason: string) => {
+  const handleCloseSnackBar = (event: React.SyntheticEvent<any> | Event, reason: string | undefined) => {
     if (reason === 'clickaway') return; // prevent snackbar from closing on clickaway
 
     setFeedback('');

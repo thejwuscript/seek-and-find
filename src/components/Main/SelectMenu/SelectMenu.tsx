@@ -23,13 +23,13 @@ export default function SelectMenu({posX, posY, handleButtonClick}: Props) {
         padding: "8px"
       }}
     >
-      <Button variant="text" sx={{ color: "white" }} value="farnsworth" onClick={handleButtonClick}>
+      <Button variant="text" sx={{ color: "white" }} value="Farnsworth" onClick={handleButtonClick}>
         Farnsworth
       </Button>
-      <Button variant="text" sx={{ color: "white" }} value="pacman" onClick={handleButtonClick}>
+      <Button variant="text" sx={{ color: "white" }} value="Pac-Man" onClick={handleButtonClick}>
         Pac-Man
       </Button>
-      <Button variant="text" sx={{ color: "white" }} value="mike" onClick={handleButtonClick}>
+      <Button variant="text" sx={{ color: "white" }} value="Mike" onClick={handleButtonClick}>
         Mike
       </Button>
     </Stack>
