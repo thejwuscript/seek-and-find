@@ -80,6 +80,7 @@ function App() {
         gameStart={gameStart}
         setGameStart={setGameStart}
         count={remainingCount}
+        gameOver={gameOver}
       />
       <MainImage
         setImageLoaded={setMainImageLoaded}

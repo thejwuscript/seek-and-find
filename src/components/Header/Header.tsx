@@ -9,10 +9,20 @@ type Props = {
   gameStart: boolean;
   setGameStart: React.Dispatch<React.SetStateAction<boolean>>;
   count: number;
+  gameOver: boolean;
 };
 
-export default function Header({ gameStart, setGameStart, count }: Props) {
-  let timer = gameStart ? <Timer /> : <div className="timer">00:00</div>;
+export default function Header({
+  gameStart,
+  setGameStart,
+  count,
+  gameOver,
+}: Props) {
+  let timer = gameStart ? (
+    <Timer gameOver={gameOver} />
+  ) : (
+    <div className="timer">00:00</div>
+  );
   return (
     <header>
       <div className="header-content">
