@@ -1,4 +1,4 @@
-import React, { useState, useRef, VoidFunctionComponent } from "react";
+import React, { useState, useRef } from "react";
 import SelectMenu from "../SelectMenu/SelectMenu";
 import robotCity from "../../../assets/images/robot_city.jpg";
 import type { Character } from "../../../App";
@@ -8,12 +8,14 @@ type Props = {
   setImageLoaded: React.Dispatch<React.SetStateAction<boolean>>;
   characters: Character[];
   changeFoundStatus: (index: number) => void;
+  changeFeedback: (message: string) => void;
 };
 
 export default function MainImage({
   setImageLoaded,
   characters,
   changeFoundStatus,
+  changeFeedback
 }: Props) {
   const [isMenuVisible, setIsMenuVisible] = useState(false);
   const [position, setPosition] = useState<number[]>([]);
@@ -40,9 +42,12 @@ export default function MainImage({
     for (let i = 0; i < 3; i++) {
       if (isAMatch(characters[i])) {
         changeFoundStatus(i);
+        changeFeedback('');
+        setTimeout(() => changeFeedback(`You've found ${clickedName}`), 0)
         break;
       } else {
-        console.log("it's a miss!");
+        changeFeedback('');
+        setTimeout(() => changeFeedback("Keep looking!"), 0)
       }
     }
   };

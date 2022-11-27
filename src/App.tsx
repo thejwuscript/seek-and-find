@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Header from "./components/Header/Header";
 import MainImage from "./components/Main/Image/MainImage";
 import HomeModal from "./components/Modal/HomeModal";
+import Feedback from './components/Feedback';
 import { db } from "./firebase-config";
 import { collection, getDocs } from "firebase/firestore";
 
@@ -21,6 +22,7 @@ function App() {
   const [gameStart, setGameStart] = useState(false);
   const [mainImageLoaded, setMainImageLoaded] = useState(false);
   const [characters, setCharacters] = useState<Character[]>([]);
+  const [feedback, setFeedback] = useState('');
 
   useEffect(() => {
     if (!gameStart) document.body.style.overflowY = "hidden";
@@ -48,6 +50,10 @@ function App() {
     setCharacters(copiedListOfCharacters);
   };
 
+  const changeFeedback = (message: string = ''): void => {
+    setFeedback(message);
+  }
+
   return (
     <div>
       <Header gameStart={gameStart} setGameStart={setGameStart} />
@@ -55,7 +61,9 @@ function App() {
         setImageLoaded={setMainImageLoaded}
         characters={characters}
         changeFoundStatus={changeFoundStatus}
+        changeFeedback={changeFeedback}
       />
+      {feedback && <Feedback message={feedback} closeSnackBar={changeFeedback}/>}
       {!gameStart && (
         <HomeModal setGameStart={setGameStart} gameReady={mainImageLoaded} />
       )}
