@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import SelectMenu from "../SelectMenu/SelectMenu";
 import robotCity from "../../../assets/images/robot_city.jpg";
-import type { Character } from "../../Game";
+import type { Character } from "../../../App";
 import "./mainImage.css";
 
 type Props = {
