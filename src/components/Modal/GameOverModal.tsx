@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo } from "react";
+import { Link } from "react-router-dom";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
@@ -61,7 +62,9 @@ export default function GameOverModal() {
         />
         <Stack spacing={2} direction="row">
           <Button variant="contained">Submit</Button>
-          <Button variant="outlined">Skip</Button>
+          <Link to="leaderboard">
+            <Button variant="outlined">Skip</Button>
+          </Link>
         </Stack>
       </Box>
     </div>

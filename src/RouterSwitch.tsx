@@ -6,9 +6,8 @@ export default function RouterSwitch() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<App />}>
-          <Route path="leaderboard" element={<Leaderboard />} />
-        </Route>
+        <Route path='/' element={<App />} />
+        <Route path="/leaderboard" element={<Leaderboard />} />
       </Routes>
     </BrowserRouter>
   )

@@ -2,6 +2,8 @@ import React from 'react';
 
 export default function Leaderboard() {
   return (
-    <div></div>
+    <div>
+      <h1>Leaderboard Page</h1>
+    </div>
   )
 };
