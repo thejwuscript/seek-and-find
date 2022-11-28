@@ -58,7 +58,7 @@ html {
 }
 
 body {
-  overflow: hidden;
+  overflow: overlay;
 }
 
 .hidden {
