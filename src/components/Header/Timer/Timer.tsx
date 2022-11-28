@@ -22,7 +22,8 @@ export default function Timer({ gameOver }: Props) {
 
   return (
     <div className="timer">
-      <span>{minutes}</span>:<span>{seconds}</span>
+      <span className="minutes">{minutes}</span>:
+      <span className="seconds">{seconds}</span>
     </div>
   );
 }
