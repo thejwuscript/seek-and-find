@@ -20,6 +20,12 @@
   align-items: center;
 }
 
+.no-scroll {
+  overflow-y: hidden;
+  overflow-x: hidden;
+  overflow: hidden;
+}
+
 .modal-background > div {
   width: 100%;
   display: flex;
@@ -100,5 +106,11 @@
   .center {
     justify-content: center;
     align-items: center;
+  }
+
+  .no-scroll {
+    overflow-y: hidden;
+    overflow-x: hidden;
+    overflow: hidden;
   }
 }

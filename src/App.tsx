@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Header from "./components/Header/Header";
 import MainImage from "./components/Main/Image/MainImage";
-import HomeModal from "./components/Modal/GameOverModal";
+import HomeModal from "./components/Modal/HomeModal";
 import Feedback from "./components/Feedback";
+import GameOverModal from "./components/Modal/GameOverModal";
 import { db } from "./firebase-config";
 import { collection, getDocs } from "firebase/firestore";
 
@@ -26,9 +27,13 @@ function App() {
   const [gameOver, setGameOver] = useState(false);
 
   useEffect(() => {
-    if (!gameStart) document.body.style.overflowY = "hidden";
-    else document.body.style.overflowY = "scroll";
-  }, [gameStart]);
+    if (!gameStart || gameOver) document.body.style.overflowY = "hidden";
+    else document.body.style.overflowY = "overlay";
+
+    return () => {
+      document.body.style.overflowY = "hidden";
+    };
+  }, [gameStart, gameOver]);
 
   useEffect(() => {
     const charactersData = async () => {
@@ -99,6 +104,7 @@ function App() {
       {!gameStart && (
         <HomeModal setGameStart={setGameStart} gameReady={mainImageLoaded} />
       )}
+      {gameOver && <GameOverModal />}
     </div>
   );
 }
