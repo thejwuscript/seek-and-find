@@ -6,7 +6,7 @@ import pacman from "../../assets/images/pacman.png";
 import mike from "../../assets/images/mike.png";
 import Button from "@mui/material/Button";
 import CircularProgress from "@mui/material/CircularProgress";
-import "./homeModal.css";
+import "./modal.css";
 
 type Props = {
   setGameStart: React.Dispatch<React.SetStateAction<boolean>>;

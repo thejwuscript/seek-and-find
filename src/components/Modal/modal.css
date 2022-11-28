@@ -11,6 +11,15 @@
   justify-content: center;
 }
 
+.lightly-dimmed {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.center {
+  justify-content: center;
+  align-items: center;
+}
+
 .modal-background > div {
   width: 100%;
   display: flex;
@@ -82,5 +91,14 @@
     padding-top: 48px;
     overflow-y: scroll;
     overflow-x: hidden;
+  }
+
+  .lightly-dimmed {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .center {
+    justify-content: center;
+    align-items: center;
   }
 }
