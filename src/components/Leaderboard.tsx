@@ -16,7 +16,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Icon from "@mdi/react";
-import { mdiTrophyAward } from "@mdi/js";
+import { mdiTrophyAward, mdiTrophyVariant } from "@mdi/js";
 
 export default function Leaderboard() {
   const [players, setPlayers] = useState<DocumentData[]>([]);
@@ -39,9 +39,9 @@ export default function Leaderboard() {
   return (
     <div className="leaderboard-page">
       <div style={{ display: "flex", alignItems: "center" }}>
-        <Icon path={mdiTrophyAward} size={1.2} color="white" />
+        <Icon path={mdiTrophyVariant} size={1.2} color="gold" />
         <h1 className="title">LEADERBOARD</h1>
-        <Icon path={mdiTrophyAward} size={1.2} color="white" />
+        <Icon path={mdiTrophyVariant} size={1.2} color="gold" />
       </div>
       <TableContainer
         component={Paper}
