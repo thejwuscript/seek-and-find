@@ -1,12 +1,16 @@
 import React, { useEffect, useMemo } from "react";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
+import { db } from "../../firebase-config";
+import { collection, addDoc } from "firebase/firestore";
 import "./modal.css";
 
 export default function GameOverModal() {
+  const navigate = useNavigate();
   const minutes = useMemo((): string => {
     return document.querySelector(".timer .minutes")!.textContent!;
   }, []);
@@ -33,12 +37,26 @@ export default function GameOverModal() {
     return `${displayMin}${displaySec}`;
   };
 
-  useEffect(() => {});
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const playerName = e.currentTarget.playerName.value;
+    const createDoc = async () => {
+      return await addDoc(collection(db, "Players"), {
+        name: playerName,
+        time: `${minutes}:${seconds}`,
+      });
+    };
+    createDoc()
+      .then(() => navigate("/leaderboard"))
+      .catch((error) => console.log(error))
+      .finally(() => e.currentTarget.reset());
+  };
 
   return (
     <div className="modal-background lightly-dimmed center no-scroll">
       <Box
         component="form"
+        onSubmit={handleSubmit}
         noValidate
         autoComplete="off"
         sx={{
@@ -57,11 +75,14 @@ export default function GameOverModal() {
         <TextField
           id="standard-basic"
           label="Name"
+          name="playerName"
           variant="standard"
           sx={{ marginBottom: "18px" }}
         />
         <Stack spacing={2} direction="row">
-          <Button variant="contained">Submit</Button>
+          <Button variant="contained" type="submit">
+            Submit
+          </Button>
           <Link to="leaderboard">
             <Button variant="outlined">Skip</Button>
           </Link>
