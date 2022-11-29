@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import {
   collection,
   DocumentData,
@@ -17,7 +18,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Icon from "@mdi/react";
-import { mdiTrophyAward, mdiTrophyVariant } from "@mdi/js";
+import {mdiTrophyVariant, mdiArrowLeftThick } from "@mdi/js";
 
 type Order = "asc" | "desc";
 
@@ -51,8 +52,10 @@ export default function Leaderboard() {
     if (target.dataset.category) {
       const sortedPlayers = [...players];
       const category = target.dataset.category as keyof Player;
-      const orderSign: number = order === 'asc' ? -1 : 1;
-      sortedPlayers.sort((a, b) => (a[category].localeCompare(b[category]) * orderSign));
+      const orderSign: number = order === "asc" ? -1 : 1;
+      sortedPlayers.sort(
+        (a, b) => a[category].localeCompare(b[category]) * orderSign
+      );
       setPlayers(sortedPlayers);
       setOrder(order === "asc" ? "desc" : "asc");
       setOrderDataBy(category);
@@ -82,7 +85,7 @@ export default function Leaderboard() {
               <TableCell sx={{ fontWeight: "bold" }}>
                 <TableSortLabel
                   active={orderDataBy === "name"}
-                  direction={orderDataBy === 'name' ? order : 'asc'}
+                  direction={orderDataBy === "name" ? order : "asc"}
                   onClick={handleSortClick}
                   data-category="name"
                 >
@@ -92,7 +95,7 @@ export default function Leaderboard() {
               <TableCell sx={{ fontWeight: "bold" }} align="right">
                 <TableSortLabel
                   active={orderDataBy === "time"}
-                  direction={orderDataBy === 'time' ? order : 'asc'}
+                  direction={orderDataBy === "time" ? order : "asc"}
                   onClick={handleSortClick}
                   data-category="time"
                 >
@@ -116,6 +119,10 @@ export default function Leaderboard() {
           </TableBody>
         </Table>
       </TableContainer>
+      <Link to="/" className="home-link">
+        <Icon path={mdiArrowLeftThick} size={1} style={{marginBottom: "2px"}}/>
+        Back to Home
+      </Link>
     </div>
   );
 }
