@@ -31,7 +31,7 @@ function App() {
     else document.body.style.overflowY = "overlay";
 
     return () => {
-      document.body.style.overflowY = "hidden";
+      document.body.style.overflowY = "overlay";
     };
   }, [gameStart, gameOver]);
 

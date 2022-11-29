@@ -33,6 +33,10 @@ export default function Leaderboard() {
   const [orderDataBy, setOrderDataBy] = useState<keyof Player>("time");
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  
+  useEffect(() => {
     const fetchPlayers = async () => {
       let array: DocumentData[] = [];
       const q = query(collection(db, "Players"), orderBy("time", "asc"));
@@ -64,6 +68,10 @@ export default function Leaderboard() {
 
   return (
     <div className="leaderboard-page">
+      <Link to="/" className="home-link">
+        <Icon path={mdiArrowLeftThick} size={1} style={{marginBottom: "2px"}}/>
+        Back to Home
+      </Link>
       <div style={{ display: "flex", alignItems: "center" }}>
         <Icon path={mdiTrophyVariant} size={1.2} color="gold" />
         <h1 className="title">LEADERBOARD</h1>
@@ -119,10 +127,6 @@ export default function Leaderboard() {
           </TableBody>
         </Table>
       </TableContainer>
-      <Link to="/" className="home-link">
-        <Icon path={mdiArrowLeftThick} size={1} style={{marginBottom: "2px"}}/>
-        Back to Home
-      </Link>
     </div>
   );
 }
