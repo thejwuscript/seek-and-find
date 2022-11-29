@@ -48,8 +48,9 @@ export default function GameOverModal() {
     };
     createDoc()
       .then(() => navigate("/leaderboard"))
-      .catch((error) => console.log(error))
-      .finally(() => e.currentTarget.reset());
+      .catch((error) => console.log(error));
+    
+    e.currentTarget.reset();
   };
 
   return (
