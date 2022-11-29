@@ -8,6 +8,7 @@ import {
 } from "firebase/firestore";
 import { db } from "../firebase-config";
 import "./leaderboard.css";
+import TableSortLabel from "@mui/material/TableSortLabel";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -18,8 +19,17 @@ import Paper from "@mui/material/Paper";
 import Icon from "@mdi/react";
 import { mdiTrophyAward, mdiTrophyVariant } from "@mdi/js";
 
+type Order = "asc" | "desc";
+
+interface Player {
+  name: string;
+  time: string;
+}
+
 export default function Leaderboard() {
   const [players, setPlayers] = useState<DocumentData[]>([]);
+  const [order, setOrder] = useState<Order>("asc");
+  const [orderDataBy, setOrderDataBy] = useState<keyof Player>("time");
 
   useEffect(() => {
     const fetchPlayers = async () => {
@@ -35,6 +45,19 @@ export default function Leaderboard() {
 
     fetchPlayers().then((data) => setPlayers(data));
   }, []);
+
+  const handleSortClick = (e: React.MouseEvent<HTMLSpanElement>) => {
+    const target = e.target as HTMLElement;
+    if (target.dataset.category) {
+      const sortedPlayers = [...players];
+      const category = target.dataset.category as keyof Player;
+      const orderSign: number = order === 'asc' ? -1 : 1;
+      sortedPlayers.sort((a, b) => (a[category].localeCompare(b[category]) * orderSign));
+      setPlayers(sortedPlayers);
+      setOrder(order === "asc" ? "desc" : "asc");
+      setOrderDataBy(category);
+    }
+  };
 
   return (
     <div className="leaderboard-page">
@@ -56,9 +79,25 @@ export default function Leaderboard() {
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell sx={{ fontWeight: "bold" }}>Name</TableCell>
+              <TableCell sx={{ fontWeight: "bold" }}>
+                <TableSortLabel
+                  active={orderDataBy === "name"}
+                  direction={orderDataBy === 'name' ? order : 'asc'}
+                  onClick={handleSortClick}
+                  data-category="name"
+                >
+                  Name
+                </TableSortLabel>
+              </TableCell>
               <TableCell sx={{ fontWeight: "bold" }} align="right">
-                Time
+                <TableSortLabel
+                  active={orderDataBy === "time"}
+                  direction={orderDataBy === 'time' ? order : 'asc'}
+                  onClick={handleSortClick}
+                  data-category="time"
+                >
+                  Time
+                </TableSortLabel>
               </TableCell>
             </TableRow>
           </TableHead>
