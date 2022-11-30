@@ -39,18 +39,19 @@ export default function GameOverModal() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const playerName = e.currentTarget.playerName.value;
-    const createDoc = async () => {
-      return await addDoc(collection(db, "Players"), {
-        name: playerName,
-        time: `${minutes}:${seconds}`,
-      });
-    };
-    createDoc()
-      .then(() => navigate("/leaderboard"))
-      .catch((error) => console.log(error));
-    
-    e.currentTarget.reset();
+    const formIsValid = e.currentTarget.reportValidity();
+    if (formIsValid) {
+      const playerName = e.currentTarget.playerName.value;
+      const createDoc = async () => {
+        return await addDoc(collection(db, "Players"), {
+          name: playerName,
+          time: `${minutes}:${seconds}`,
+        });
+      };
+      createDoc()
+        .then(() => navigate("/leaderboard"))
+        .catch((error) => console.log(error));
+    }
   };
 
   return (
@@ -79,6 +80,7 @@ export default function GameOverModal() {
           name="playerName"
           variant="standard"
           sx={{ marginBottom: "18px" }}
+          required
         />
         <Stack spacing={2} direction="row">
           <Button variant="contained" type="submit">
