@@ -52,7 +52,7 @@ export default function Leaderboard() {
   }, []);
 
   const handleSortClick = (e: React.MouseEvent<HTMLSpanElement>) => {
-    const target = e.target as HTMLElement;
+    const target = e.currentTarget as HTMLElement;
     if (target.dataset.category) {
       const sortedPlayers = [...players];
       const category = target.dataset.category as keyof Player;
@@ -96,6 +96,7 @@ export default function Leaderboard() {
                   direction={orderDataBy === "name" ? order : "asc"}
                   onClick={handleSortClick}
                   data-category="name"
+                  sx={{position: "relative"}}
                 >
                   Name
                 </TableSortLabel>
