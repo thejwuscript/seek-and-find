@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import DropdownList from "../DropdownList/DropdownList";
+import DropdownList from "../List/DropdownList";
 import "./counter.css";
 
 type Props = {

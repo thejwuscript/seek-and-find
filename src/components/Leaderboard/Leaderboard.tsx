@@ -7,7 +7,7 @@ import {
   orderBy,
   query,
 } from "firebase/firestore";
-import { db } from "../firebase-config";
+import { db } from "../../firebase-config";
 import "./leaderboard.css";
 import TableSortLabel from "@mui/material/TableSortLabel";
 import Table from "@mui/material/Table";

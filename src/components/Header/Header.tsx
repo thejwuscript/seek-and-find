@@ -1,9 +1,9 @@
 import React from "react";
-import Counter from "./Counter/Counter";
+import Counter from "../Counter/Counter";
 import HomeIcon from "@mui/icons-material/Home";
-import Timer from "./Timer/Timer";
+import Timer from "../Timer/Timer";
 import "./header.css";
-import "./Timer/timer.css";
+import "../Timer/timer.css";
 
 type Props = {
   gameStart: boolean;

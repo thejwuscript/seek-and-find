@@ -1,9 +1,9 @@
 import React, { useState, useRef } from "react";
 import SelectMenu from "../SelectMenu/SelectMenu";
-import robotCity from "../../../assets/images/robot_city.jpg";
-import type { Character } from "../../../App";
+import robotCity from "../../assets/images/robot_city.jpg";
+import type { Character } from "../../App";
 import "./mainImage.css";
-import Credit from "../../Credits";
+import Credit from "../Credits/Credits";
 
 type Props = {
   setImageLoaded: React.Dispatch<React.SetStateAction<boolean>>;

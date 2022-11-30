@@ -1,5 +1,5 @@
 import React from "react";
-import CharacterListItem from "../Header/DropdownList/CharacterListItem";
+import CharacterListItem from "../ListItem/CharacterListItem";
 import Image from "../../assets/images/robot_city.jpg";
 import farnsworth from "../../assets/images/farnsworth.png";
 import pacman from "../../assets/images/pacman.png";

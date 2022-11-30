@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Header from "./components/Header/Header";
-import MainImage from "./components/Main/Image/MainImage";
+import MainImage from "./components/MainImage/MainImage";
 import HomeModal from "./components/Modal/HomeModal";
-import Feedback from "./components/Feedback";
+import Feedback from "./components/Feedback/Feedback";
 import GameOverModal from "./components/Modal/GameOverModal";
 import { db } from "./firebase-config";
 import { collection, getDocs } from "firebase/firestore";
