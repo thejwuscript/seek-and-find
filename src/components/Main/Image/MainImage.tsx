@@ -3,6 +3,7 @@ import SelectMenu from "../SelectMenu/SelectMenu";
 import robotCity from "../../../assets/images/robot_city.jpg";
 import type { Character } from "../../../App";
 import "./mainImage.css";
+import Credit from "../../Credits";
 
 type Props = {
   setImageLoaded: React.Dispatch<React.SetStateAction<boolean>>;
@@ -15,7 +16,7 @@ export default function MainImage({
   setImageLoaded,
   characters,
   changeFoundStatus,
-  changeFeedback
+  changeFeedback,
 }: Props) {
   const [isMenuVisible, setIsMenuVisible] = useState(false);
   const [position, setPosition] = useState<number[]>([]);
@@ -32,11 +33,13 @@ export default function MainImage({
     const clickedPosY = (position[1] - 56) / imgRef.current.height;
     const clickedName = target.value;
     const isAMatch = (character: Character) => {
-      return clickedName === character.name &&
+      return (
+        clickedName === character.name &&
         clickedPosX > character.posX.min &&
         clickedPosX < character.posX.max &&
         clickedPosY > character.posY.min &&
-        clickedPosY < character.posY.max;
+        clickedPosY < character.posY.max
+      );
     };
 
     for (let i = 0; i < 3; i++) {
@@ -45,15 +48,13 @@ export default function MainImage({
         changeFeedback(`You've found ${clickedName}!`);
         break;
       } else {
-        changeFeedback('Keep looking!');
+        changeFeedback("Keep looking!");
       }
     }
   };
 
-  
-
   return (
-    <div onClick={handleImageClick}>
+    <div onClick={handleImageClick} style={{ position: "relative" }}>
       <img
         src={robotCity}
         alt="main"
@@ -61,6 +62,7 @@ export default function MainImage({
         onLoad={() => setImageLoaded(true)}
         ref={imgRef}
       />
+      <Credit />
       {isMenuVisible && (
         <SelectMenu
           posX={position[0]}
