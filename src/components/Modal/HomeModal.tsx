@@ -16,7 +16,7 @@ type Props = {
 export default function HomeModal({ setGameStart, gameReady }: Props) {
   const textStyles = {
     fontSize: "14px",
-    fontWeight: "normal",
+    fontWeight: "bold",
   };
 
   const handleStartClick = () => {
