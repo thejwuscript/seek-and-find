@@ -50,7 +50,7 @@ export default function HomeModal({ setGameStart, gameReady }: Props) {
   return (
     <div className="modal-background">
       <div>
-        <h1 className="game-title">Seek 'n Find</h1>
+        <h1 className="game-title">Seek & Find</h1>
         <div className="modal-box">
           <div className="image-preview-container">
             <img src={Image} alt="preview" className="image-preview" />

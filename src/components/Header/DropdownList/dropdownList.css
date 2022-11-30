@@ -2,7 +2,7 @@
   position: absolute;
   right: 0;
   top: 45px;
-  background-color: #696969;
+  background-color: var(--black);
   opacity: 0.9;
   width: 250px;
   border-radius: 10px;

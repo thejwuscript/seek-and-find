@@ -54,7 +54,7 @@ export default function MainImage({
   };
 
   return (
-    <div onClick={handleImageClick} style={{ position: "relative" }}>
+    <div className="main-image-container" onClick={handleImageClick}>
       <img
         src={robotCity}
         alt="main"
