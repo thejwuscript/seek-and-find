@@ -21,6 +21,7 @@ export default function SelectMenu({ posX, posY, handleButtonClick }: Props) {
         borderRadius: "10px",
         padding: "8px",
       }}
+      role="menu"
     >
       <Button
         variant="text"
