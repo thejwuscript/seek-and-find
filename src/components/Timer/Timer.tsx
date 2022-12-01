@@ -21,7 +21,7 @@ export default function Timer({ gameOver }: Props) {
   let minutes = `${Math.floor((diff / 1000 / 60) % 60)}`.padStart(2, "0");
 
   return (
-    <div className="timer">
+    <div className="timer" role="timer">
       <span className="minutes">{minutes}</span>:
       <span className="seconds">{seconds}</span>
     </div>
