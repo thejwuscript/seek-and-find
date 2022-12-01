@@ -22,6 +22,7 @@ export default function Feedback({ message, handleClose }: Props) {
   return (
     <Snackbar
       anchorOrigin={{ vertical: "top", horizontal: "right" }}
+      role="notification"
       open={!!message}
       autoHideDuration={3000}
       onClose={handleClose}
