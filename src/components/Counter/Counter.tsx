@@ -17,6 +17,7 @@ export default function Counter({ count, foundCharacters }: Props) {
   return (
     <div
       className="counter-container"
+      role="button"
       onClick={handleCounterClick}
       style={{ cursor: "pointer" }}
     >
