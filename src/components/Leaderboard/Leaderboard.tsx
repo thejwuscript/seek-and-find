@@ -76,6 +76,7 @@ export default function Leaderboard() {
           border: "8px solid var(--black)",
           borderRadius: "15px",
           outline: "2px solid white",
+          marginBottom: "28px"
         }}
       >
         <Table>
