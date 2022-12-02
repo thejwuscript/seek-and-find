@@ -71,6 +71,8 @@ export default function HomeModal({ setGameStart, gameReady }: Props) {
               itemStyles={{
                 flexDirection: "column",
                 justifyContent: "space-between",
+                paddingLeft: 0,
+                paddingRight: 0
               }}
               textStyles={textStyles}
             />
@@ -80,6 +82,8 @@ export default function HomeModal({ setGameStart, gameReady }: Props) {
               itemStyles={{
                 flexDirection: "column",
                 justifyContent: "space-between",
+                paddingLeft: 0,
+                paddingRight: 0
               }}
               textStyles={textStyles}
             />
@@ -89,6 +93,8 @@ export default function HomeModal({ setGameStart, gameReady }: Props) {
               itemStyles={{
                 flexDirection: "column",
                 justifyContent: "space-between",
+                paddingLeft: 0,
+                paddingRight: 0
               }}
               textStyles={textStyles}
             />
