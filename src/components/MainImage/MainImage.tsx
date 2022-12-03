@@ -49,14 +49,16 @@ export default function MainImage({
       );
     };
 
-    getDoc(docRef).then((doc) => {
-      if (isAMatch(doc.data()!)) {
-        changeFoundStatus(doc.id);
-        changeFeedback(`You've found ${clickedName}!`);
-      } else {
-        changeFeedback("Keep looking!");
-      }
-    });
+    getDoc(docRef)
+      .then((doc) => {
+        if (isAMatch(doc.data()!)) {
+          changeFoundStatus(doc.id);
+          changeFeedback(`You've found ${clickedName}!`);
+        } else {
+          changeFeedback("Keep looking!");
+        }
+      })
+      .catch((error) => console.log(error));
   };
 
   return (
