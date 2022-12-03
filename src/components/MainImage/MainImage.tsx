@@ -4,11 +4,13 @@ import robotCity from "../../assets/images/robot_city.jpg";
 import type { Character } from "../../App";
 import "./mainImage.css";
 import Credit from "../Credits/Credits";
+import { db } from "../../firebase-config";
+import { doc, DocumentData, getDoc } from "firebase/firestore";
 
 type Props = {
   setImageLoaded: React.Dispatch<React.SetStateAction<boolean>>;
   characters: Character[];
-  changeFoundStatus: (index: number) => void;
+  changeFoundStatus: (id: string) => void;
   changeFeedback: (message: string) => void;
 };
 
@@ -31,30 +33,30 @@ export default function MainImage({
   };
 
   const handleButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-
     const target = e.target as HTMLButtonElement;
     const clickedPosX = position[0] / Math.max(window.innerWidth, 1024);
     const clickedPosY = position[1] / imgRef.current.height;
     const clickedName = target.value;
-    const isAMatch = (character: Character) => {
+    const characterId = e.currentTarget.dataset.characterid;
+    const docRef = doc(db, "Characters", `${characterId}`);
+    const isAMatch = (docData: DocumentData) => {
       return (
-        clickedName === character.name &&
-        clickedPosX > character.posX.min &&
-        clickedPosX < character.posX.max &&
-        clickedPosY > character.posY.min &&
-        clickedPosY < character.posY.max
+        clickedName === docData.name &&
+        clickedPosX > docData.posX.min &&
+        clickedPosX < docData.posX.max &&
+        clickedPosY > docData.posY.min &&
+        clickedPosY < docData.posY.max
       );
     };
 
-    for (let i = 0; i < 3; i++) {
-      if (isAMatch(characters[i])) {
-        changeFoundStatus(i);
+    getDoc(docRef).then((doc) => {
+      if (isAMatch(doc.data()!)) {
+        changeFoundStatus(doc.id);
         changeFeedback(`You've found ${clickedName}!`);
-        break;
       } else {
         changeFeedback("Keep looking!");
       }
-    }
+    });
   };
 
   return (
@@ -73,6 +75,7 @@ export default function MainImage({
           posX={position[0]}
           posY={position[1]}
           handleButtonClick={handleButtonClick}
+          characters={characters}
         />
       )}
     </div>

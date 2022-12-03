@@ -13,11 +13,6 @@ type Character = {
   isFound: boolean;
 };
 
-type Range = {
-  min: number;
-  max: number;
-};
-
 function App() {
   const [gameStart, setGameStart] = useState(false);
   const [mainImageLoaded, setMainImageLoaded] = useState(false);
@@ -57,10 +52,12 @@ function App() {
     if (remainingCount === 0) setGameOver(true);
   }, [remainingCount]);
 
-  const changeFoundStatus = (index: number): void => {
+  const changeFoundStatus = (id: string): void => {
     const copiedListOfCharacters = characters.slice();
-    const foundCharacter = { ...copiedListOfCharacters[index], isFound: true };
-    copiedListOfCharacters[index] = foundCharacter;
+    const character = copiedListOfCharacters.find(
+      (character) => character.id === id
+    );
+    if (character) character.isFound = true;
     setCharacters(copiedListOfCharacters);
   };
 

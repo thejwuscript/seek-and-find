@@ -1,14 +1,21 @@
 import React, { MouseEventHandler } from "react";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
+import type { Character } from "../../App";
 
 type Props = {
   posX: number;
   posY: number;
   handleButtonClick: MouseEventHandler;
+  characters: Character[];
 };
 
-export default function SelectMenu({ posX, posY, handleButtonClick }: Props) {
+export default function SelectMenu({
+  posX,
+  posY,
+  handleButtonClick,
+  characters,
+}: Props) {
   return (
     <Stack
       spacing={2}
@@ -23,30 +30,18 @@ export default function SelectMenu({ posX, posY, handleButtonClick }: Props) {
       }}
       role="menu"
     >
-      <Button
-        variant="text"
-        sx={{ color: "white" }}
-        value="Farnsworth"
-        onClick={handleButtonClick}
-      >
-        Farnsworth
-      </Button>
-      <Button
-        variant="text"
-        sx={{ color: "white" }}
-        value="Pac-Man"
-        onClick={handleButtonClick}
-      >
-        Pac-Man
-      </Button>
-      <Button
-        variant="text"
-        sx={{ color: "white" }}
-        value="Mike"
-        onClick={handleButtonClick}
-      >
-        Mike
-      </Button>
+      {characters.map((character) => (
+        <Button
+          variant="text"
+          sx={{ color: "white" }}
+          value={character.name}
+          data-characterid={character.id}
+          key={character.id}
+          onClick={handleButtonClick}
+        >
+          {character.name}
+        </Button>
+      ))}
     </Stack>
   );
 }
