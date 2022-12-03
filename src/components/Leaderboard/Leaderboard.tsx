@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "./leaderboard.css";
 import TableSortLabel from "@mui/material/TableSortLabel";
 import Table from "@mui/material/Table";
@@ -13,6 +13,7 @@ import Icon from "@mdi/react";
 import { mdiTrophyVariant, mdiArrowLeftThick } from "@mdi/js";
 import usePlayers from "../../hooks/usePlayers";
 import { DocumentData } from "firebase/firestore";
+import { StyledEngineProvider } from "@mui/material/styles";
 
 type Order = "asc" | "desc";
 
@@ -35,6 +36,9 @@ export default function Leaderboard() {
     setSortedPlayers(players);
   }, [players]);
 
+  const location = useLocation();
+  const currentPlayerName = location.state?.name;
+
   const handleSortClick = (e: React.MouseEvent<HTMLSpanElement>) => {
     const target = e.currentTarget as HTMLElement;
     if (target.dataset.category) {
@@ -51,76 +55,91 @@ export default function Leaderboard() {
   };
 
   return (
-    <div className="leaderboard-page">
-      <Link to="/" className="home-link">
-        <Icon
-          path={mdiArrowLeftThick}
-          size={1}
-          style={{ marginBottom: "2px" }}
-        />
-        Back to Home
-      </Link>
-      <div style={{ display: "flex", alignItems: "center" }}>
-        <Icon path={mdiTrophyVariant} size={1.2} color="gold" />
-        <h1 className="title">LEADERBOARD</h1>
-        <Icon path={mdiTrophyVariant} size={1.2} color="gold" />
-      </div>
-      {isError && (
-        <div className="error-message">Cannot retrieve player data.</div>
-      )}
-      <TableContainer
-        component={Paper}
-        sx={{
-          width: "95%",
-          maxWidth: 500,
-          border: "8px solid var(--black)",
-          borderRadius: "15px",
-          outline: "2px solid white",
-          marginBottom: "28px"
-        }}
-      >
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell sx={{ fontWeight: "bold" }}>
-                <TableSortLabel
-                  active={orderDataBy === "name"}
-                  direction={orderDataBy === "name" ? order : "asc"}
-                  onClick={handleSortClick}
-                  data-category="name"
-                  sx={{ position: "relative" }}
-                >
-                  Name
-                </TableSortLabel>
-              </TableCell>
-              <TableCell sx={{ fontWeight: "bold" }} align="right">
-                <TableSortLabel
-                  active={orderDataBy === "time"}
-                  direction={orderDataBy === "time" ? order : "asc"}
-                  onClick={handleSortClick}
-                  data-category="time"
-                >
-                  Time
-                </TableSortLabel>
-              </TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {sortedPlayers.map((player) => (
-              <TableRow
-                key={player.id}
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                role="row"
-              >
-                <TableCell component="th" scope="row">
-                  {player.name}
+    <StyledEngineProvider injectFirst>
+      <div className="leaderboard-page">
+        <Link to="/" className="home-link">
+          <Icon
+            path={mdiArrowLeftThick}
+            size={1}
+            style={{ marginBottom: "2px" }}
+          />
+          Back to Home
+        </Link>
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <Icon path={mdiTrophyVariant} size={1.2} color="gold" />
+          <h1 className="title">LEADERBOARD</h1>
+          <Icon path={mdiTrophyVariant} size={1.2} color="gold" />
+        </div>
+        {isError && (
+          <div className="error-message">Cannot retrieve player data.</div>
+        )}
+        <TableContainer
+          component={Paper}
+          sx={{
+            width: "95%",
+            maxWidth: 500,
+            border: "8px solid var(--black)",
+            borderRadius: "15px",
+            outline: "2px solid white",
+            marginBottom: "28px",
+          }}
+        >
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell sx={{ fontWeight: "bold" }}>
+                  <TableSortLabel
+                    active={orderDataBy === "name"}
+                    direction={orderDataBy === "name" ? order : "asc"}
+                    onClick={handleSortClick}
+                    data-category="name"
+                    sx={{ position: "relative" }}
+                  >
+                    Name
+                  </TableSortLabel>
                 </TableCell>
-                <TableCell align="right">{player.time}</TableCell>
+                <TableCell sx={{ fontWeight: "bold" }} align="right">
+                  <TableSortLabel
+                    active={orderDataBy === "time"}
+                    direction={orderDataBy === "time" ? order : "asc"}
+                    onClick={handleSortClick}
+                    data-category="time"
+                  >
+                    Time
+                  </TableSortLabel>
+                </TableCell>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </div>
+            </TableHead>
+            <TableBody>
+              {sortedPlayers.map((player) => (
+                <TableRow
+                  key={player.id}
+                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                  role="row"
+                >
+                  <TableCell
+                    component="th"
+                    scope="row"
+                    className={
+                      player.name === currentPlayerName ? "emphasize" : ""
+                    }
+                  >
+                    {player.name}
+                  </TableCell>
+                  <TableCell
+                    align="right"
+                    className={
+                      player.name === currentPlayerName ? "emphasize" : ""
+                    }
+                  >
+                    {player.time}
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </div>
+    </StyledEngineProvider>
   );
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Box from "@mui/material/Box";
@@ -49,7 +49,13 @@ export default function GameOverModal() {
         });
       };
       createDoc()
-        .then(() => navigate("/leaderboard"))
+        .then(() =>
+          navigate("/leaderboard", {
+            state: {
+              name: playerName,
+            },
+          })
+        )
         .catch((error) => console.log(error));
     }
   };
