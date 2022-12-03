@@ -33,7 +33,7 @@ export default function SelectMenu({
       {characters.map((character) => (
         <Button
           variant="text"
-          sx={{ color: "white" }}
+          sx={{ color: "white", fontWeight: 600 }}
           value={character.name}
           data-characterid={character.id}
           key={character.id}
