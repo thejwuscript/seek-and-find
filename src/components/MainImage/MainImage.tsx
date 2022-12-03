@@ -24,13 +24,17 @@ export default function MainImage({
 
   const handleImageClick = (e: React.MouseEvent<HTMLDivElement>): void => {
     setIsMenuVisible(!isMenuVisible);
-    setPosition([e.pageX, e.pageY]);
+    const { x, y } = imgRef.current.getBoundingClientRect(); // y starts at 56 due to sticky header, x starts at 0
+    const X = e.clientX - x;
+    const Y = e.clientY - y;
+    setPosition([X, Y]);
   };
 
   const handleButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+
     const target = e.target as HTMLButtonElement;
-    const clickedPosX = position[0] / window.innerWidth;
-    const clickedPosY = (position[1] - 56) / imgRef.current.height;
+    const clickedPosX = position[0] / Math.max(window.innerWidth, 1024);
+    const clickedPosY = position[1] / imgRef.current.height;
     const clickedName = target.value;
     const isAMatch = (character: Character) => {
       return (
@@ -57,6 +61,7 @@ export default function MainImage({
     <div className="main-image-container" onClick={handleImageClick}>
       <img
         src={robotCity}
+        width={1920}
         alt="main"
         className="main-image"
         onLoad={() => setImageLoaded(true)}

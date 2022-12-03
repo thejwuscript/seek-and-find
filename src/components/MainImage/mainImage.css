@@ -1,8 +1,10 @@
 .main-image-container {
   position: relative;
+  overflow: auto;
 }
 
 .main-image {
   max-width: 100%;
+  min-width: 1024px;
   display: block;
 }

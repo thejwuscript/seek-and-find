@@ -16,7 +16,7 @@ export default function SelectMenu({ posX, posY, handleButtonClick }: Props) {
       style={{
         position: "absolute",
         left: `${posX}px`,
-        top: `${posY - 50}px`,
+        top: `${posY}px`,
         backgroundColor: "var(--black)",
         borderRadius: "10px",
         padding: "8px",
