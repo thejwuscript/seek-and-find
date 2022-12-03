@@ -8,9 +8,8 @@ import { db } from "./firebase-config";
 import { collection, getDocs } from "firebase/firestore";
 
 type Character = {
+  id: string;
   name: string;
-  posX: Range;
-  posY: Range;
   isFound: boolean;
 };
 
@@ -40,8 +39,8 @@ function App() {
       let arrayOfCharacters: Character[] = [];
       const querySnapshot = await getDocs(collection(db, "Characters"));
       querySnapshot.forEach((doc) => {
-        const { name, posX, posY } = doc.data();
-        arrayOfCharacters.push({ name, posX, posY, isFound: false });
+        const { name } = doc.data();
+        arrayOfCharacters.push({ id: doc.id, name: name, isFound: false });
       });
       return arrayOfCharacters;
     };
