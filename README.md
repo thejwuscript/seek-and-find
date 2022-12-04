@@ -5,7 +5,7 @@ A photo-tagging game inspired by [Where's Waldo](https://en.wikipedia.org/wiki/W
 
 ## Preview
 
-https://user-images.githubusercontent.com/88938117/205437849-b194d5ec-fd2d-41fc-ade8-673d09743826.mp4
+https://user-images.githubusercontent.com/88938117/205469568-7f1830f4-e0ae-4bcb-943a-6c48ab0418f0.mp4
 
 ## Features
 - Instant feedback on whether a character is found
