@@ -26,7 +26,7 @@ export default function MainImage({
 
   const handleImageClick = (e: React.MouseEvent<HTMLDivElement>): void => {
     setIsMenuVisible(!isMenuVisible);
-    const { x, y } = imgRef.current.getBoundingClientRect(); // y starts at 56 due to sticky header, x starts at 0
+    const { x, y } = imgRef.current.getBoundingClientRect(); // y starts at 52 due to sticky header, x starts at 0
     const X = e.clientX - x;
     const Y = e.clientY - y;
     setPosition([X, Y]);
