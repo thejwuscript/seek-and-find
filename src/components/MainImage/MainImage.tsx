@@ -4,8 +4,6 @@ import robotCity from "../../assets/images/robot_city.jpg";
 import type { Character } from "../../App";
 import "./mainImage.css";
 import Credit from "../Credits/Credits";
-import { db } from "../../firebase-config";
-import { doc, DocumentData, getDoc } from "firebase/firestore";
 
 type Props = {
   setImageLoaded: React.Dispatch<React.SetStateAction<boolean>>;
@@ -34,31 +32,23 @@ export default function MainImage({
 
   const handleButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     const target = e.target as HTMLButtonElement;
-    const clickedPosX = position[0] / Math.max(window.innerWidth, 1024);
-    const clickedPosY = position[1] / imgRef.current.height;
+    const clickedX = position[0] / Math.max(window.innerWidth, 1024);
+    const clickedY = position[1] / imgRef.current.height;
     const clickedName = target.value;
-    const characterId = e.currentTarget.dataset.characterid;
-    const docRef = doc(db, "Characters", `${characterId}`);
-    const isAMatch = (docData: DocumentData) => {
-      return (
-        clickedName === docData.name &&
-        clickedPosX > docData.posX.min &&
-        clickedPosX < docData.posX.max &&
-        clickedPosY > docData.posY.min &&
-        clickedPosY < docData.posY.max
-      );
-    };
+    const characterId = e.currentTarget.dataset.characterid!;
 
-    getDoc(docRef)
-      .then((doc) => {
-        if (isAMatch(doc.data()!)) {
-          changeFoundStatus(doc.id);
-          changeFeedback(`You've found ${clickedName}!`);
-        } else {
+    fetch(
+      `/.netlify/functions/validate-selection?id=${characterId}&clickedX=${clickedX}&clickedY=${clickedY}`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        if (data === null) {
           changeFeedback("Keep looking!");
+        } else {
+          changeFoundStatus(characterId);
+          changeFeedback(`You've found ${clickedName}!`);
         }
-      })
-      .catch((error) => console.log(error));
+      });
   };
 
   return (
