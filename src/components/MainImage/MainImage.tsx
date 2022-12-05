@@ -32,13 +32,13 @@ export default function MainImage({
 
   const handleButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     const target = e.target as HTMLButtonElement;
-    const clickedX = position[0] / Math.max(window.innerWidth, 1024);
-    const clickedY = position[1] / imgRef.current.height;
+    const width = Math.max(window.innerWidth, 1024);
+    const height = imgRef.current.height;
     const clickedName = target.value;
     const characterId = e.currentTarget.dataset.characterid!;
 
     fetch(
-      `/.netlify/functions/validate-selection?id=${characterId}&clickedX=${clickedX}&clickedY=${clickedY}`
+      `/.netlify/functions/validate-selection?id=${characterId}&clickedX=${position[0]}&clickedY=${position[1]}&width=${width}&height=${height}`
     )
       .then((res) => res.json())
       .then((data) => {

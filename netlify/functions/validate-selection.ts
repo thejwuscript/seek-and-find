@@ -8,6 +8,10 @@ const handler: Handler = async (
   const id = event.queryStringParameters!.id;
   const clickedX = Number(event.queryStringParameters!.clickedX!);
   const clickedY = Number(event.queryStringParameters!.clickedY!);
+  const width = Number(event.queryStringParameters!.width);
+  const height = Number(event.queryStringParameters!.height);
+  const relativeX = clickedX / width;
+  const relativeY = clickedY / height;
 
   if (id) {
     const docRef = doc(db, "Characters", id);
@@ -15,10 +19,10 @@ const handler: Handler = async (
     if (docSnap.exists()) {
       const { posX, posY } = docSnap.data();
       if (
-        clickedX < posX.max &&
-        clickedX > posX.min &&
-        clickedY < posY.max &&
-        clickedY > posY.min
+        relativeX < posX.max &&
+        relativeX > posX.min &&
+        relativeY < posY.max &&
+        relativeY > posY.min
       ) {
         return {
           statusCode: 200,
