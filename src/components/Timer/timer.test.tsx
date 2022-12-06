@@ -39,6 +39,3 @@ describe("Timer component", () => {
     expect(screen.getByRole("timer")).toHaveTextContent("00:05");
   });
 });
-
-// https://stackoverflow.com/questions/64401853/how-to-check-what-react-component-displays-after-delay-in-a-test
-// https://jestjs.io/docs/timer-mocks#advance-timers-by-time
