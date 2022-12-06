@@ -32,19 +32,25 @@ export default function MainImage({
 
   const handleButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     const target = e.target as HTMLButtonElement;
+    const [clickedX, clickedY] = position;
     const width = Math.max(window.innerWidth, 1024);
     const height = imgRef.current.height;
     const clickedName = target.value;
     const characterId = e.currentTarget.dataset.characterid!;
+    const params = new URLSearchParams({
+      id: characterId,
+      clickedX: clickedX.toString(),
+      clickedY: clickedY.toString(),
+      width: width.toString(),
+      height: height.toString(),
+    });
 
-    fetch(
-      `/.netlify/functions/validate-selection?id=${characterId}&clickedX=${position[0]}&clickedY=${position[1]}&width=${width}&height=${height}`
-    )
+    fetch(`/.netlify/functions/validate-selection?${params}`)
       .then((res) => res.json())
       .then((data) => {
         if (data === null) {
           changeFeedback("Keep looking!");
-        } else {
+        } else if (data === clickedName) {
           changeFoundStatus(characterId);
           changeFeedback(`You've found ${clickedName}!`);
         }
