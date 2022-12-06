@@ -1,7 +1,7 @@
 # Seek & Find
 A game inspired by [Where's Waldo](https://en.wikipedia.org/wiki/Where%27s_Wally%3F).
 
-[Live demo](https://luxury-marigold-c9f1c3.netlify.app/)👈
+[Live demo](https://seek-and-find.netlify.app/)👈
 
 ## Preview
 
