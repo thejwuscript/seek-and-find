@@ -35,6 +35,8 @@ My first thought was to create an API using Ruby on Rails to handle the validati
 Fortunately, Netlify offers a similar service without billing registration called Netlify Functions. I was able to construct and deploy a function that contains the necessary logic to validate the player's selection. From the client side, an HTTP request can be made to the API endpoint created by the function. The response is then used to update the React state and UI.
 
 ```typescript
+// MainImage.tsx
+
 fetch(`/.netlify/functions/validate-selection?${params}`)
   .then((res) => res.json())
   .then((data) => {
@@ -48,3 +50,52 @@ fetch(`/.netlify/functions/validate-selection?${params}`)
 ```
 
 Although the client knows what parameters are passed to the function, it does not know how the function process them. By using a serverless function, I successfully extracted the validation logic away from the client and more importantly, the implementation detail was no longer exposed. 
+
+### Mocking Cloud Firestore
+The Leaderboard component originally had and an Effect hook to fetch players' data from Cloud Firestore:
+```typescript
+// Leaderboard.tsx
+
+useEffect(() => {
+  const fetchPlayers = async () => {
+    let array: DocumentData[] = [];
+    const q = query(collection(db, "Players"), orderBy("time", "asc"));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      let docObj = { ...doc.data(), id: doc.id };
+      array.push(docObj);
+    });
+    return array;
+  };
+
+  fetchPlayers().then((data) => setPlayers(data));
+}, []);
+```
+While writing tests for the component, it was quite challenging to mock the Firestore methods such as ``` collection() ```.  While there is a [library available to help with mocking Cloud Firestore](https://github.com/Upstatement/firestore-jest-mock), I thought this was a good opportunity to extract all this logic into a custom hook. The idea was I can mock the custom hook itself to return a pre-determined value without worrying about mocking the implementation of the hook. It resulted in a much cleaner code without any extravagant mocks.
+
+```typescript
+// Leaderboard.test.tsx
+
+const mockPlayers = [
+  {
+    id: "1",
+    name: "Justin",
+    time: "01:00",
+  },
+  {
+    id: "88",
+    name: "Rose",
+    time: "03:00",
+  },
+  {
+    id: "37",
+    name: "Bill",
+    time: "02:00",
+  },
+];
+
+jest.mock("../../hooks/usePlayers.tsx", () => () => {
+  let players = mockPlayers;
+  return { players };
+});
+```
