@@ -71,7 +71,7 @@ useEffect(() => {
   fetchPlayers().then((data) => setPlayers(data));
 }, []);
 ```
-While writing tests for the component, it was quite challenging to mock the Firestore methods such as ``` collection() ```.  While there is a [library available to help with mocking Cloud Firestore](https://github.com/Upstatement/firestore-jest-mock), I thought this was a good opportunity to extract all this logic into a custom hook. The idea was I can mock the custom hook itself to return a pre-determined value without worrying about mocking the implementation of the hook. It resulted in a much cleaner code without any extravagant mocks.
+While writing tests for the component, it was quite challenging to mock the Firestore methods such as ``` collection() ```.  While there is a [library available to help with mocking Cloud Firestore](https://github.com/Upstatement/firestore-jest-mock), I thought this was a good opportunity to extract all this logic into a custom hook ```usePlayers```. The idea was I can mock the custom hook itself to return a pre-determined value without worrying about mocking the implementation of the hook. It resulted in a much cleaner code without any extravagant mocks.
 
 ```typescript
 // Leaderboard.test.tsx
