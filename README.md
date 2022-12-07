@@ -99,3 +99,7 @@ jest.mock("../../hooks/usePlayers.tsx", () => () => {
   return { players };
 });
 ```
+## Future Additions
+
+- [ ] Find different set of characters in each game
+- [ ] Add more maps/levels
