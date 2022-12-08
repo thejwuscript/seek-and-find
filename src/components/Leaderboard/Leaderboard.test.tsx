@@ -24,7 +24,6 @@ const mockPlayers = [
 
 jest.mock("../../hooks/usePlayers.tsx", () => () => {
   let players = mockPlayers;
-  //const setPlayers = jest.fn((sorted) => (players = sorted));
   return { players };
 });
 
