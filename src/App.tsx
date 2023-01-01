@@ -41,7 +41,7 @@ function App() {
     };
 
     charactersData().then((data) => setCharacters(data));
-  }, []);
+  }, [gameStart]);
 
   const remainingCount = characters.reduce((result, character) => {
     if (character.isFound) result -= 1;
