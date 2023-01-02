@@ -4,10 +4,10 @@ import "./counter.css";
 
 type Props = {
   count: number;
-  foundCharacters: string[];
+  foundCharacterNames: string[];
 };
 
-export default function Counter({ count, foundCharacters }: Props) {
+export default function Counter({ count, foundCharacterNames }: Props) {
   const [showingList, setShowingList] = useState(false);
 
   const handleCounterClick = () => {
@@ -22,7 +22,7 @@ export default function Counter({ count, foundCharacters }: Props) {
       style={{ cursor: "pointer" }}
     >
       <span className="counter-number">{count}</span>
-      <DropdownList isShowing={showingList} foundCharacters={foundCharacters} />
+      <DropdownList isShowing={showingList} foundCharacterNames={foundCharacterNames} />
     </div>
   );
 }

@@ -9,10 +9,10 @@ import { StyledEngineProvider } from "@mui/material/styles";
 
 type Props = {
   isShowing: boolean;
-  foundCharacters: string[];
+  foundCharacterNames: string[];
 };
 
-export default function DropdownList({ isShowing, foundCharacters }: Props) {
+export default function DropdownList({ isShowing, foundCharacterNames }: Props) {
   const listClassName = `dropdown-character-list ${isShowing ? "" : "hidden"}`;
   const textStyles = {
     fontSize: "20px",
@@ -27,21 +27,21 @@ export default function DropdownList({ isShowing, foundCharacters }: Props) {
           name="Farnsworth"
           itemStyles={{ gap: "28px" }}
           textStyles={textStyles}
-          isFound={foundCharacters.includes("Farnsworth")}
+          isFound={foundCharacterNames.includes("Farnsworth")}
         />
         <CharacterListItem
           imageSrc={pacman}
           name="Pac-Man"
           itemStyles={{ gap: "28px" }}
           textStyles={textStyles}
-          isFound={foundCharacters.includes("Pac-Man")}
+          isFound={foundCharacterNames.includes("Pac-Man")}
         />
         <CharacterListItem
           imageSrc={mike}
           name="Mike"
           itemStyles={{ gap: "28px" }}
           textStyles={textStyles}
-          isFound={foundCharacters.includes("Mike")}
+          isFound={foundCharacterNames.includes("Mike")}
         />
       </List>
     </StyledEngineProvider>

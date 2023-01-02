@@ -75,7 +75,7 @@ function App() {
     setFeedback("");
   };
 
-  const foundCharacters = characters
+  const foundCharacterNames = characters
     .filter((char) => char.isFound)
     .map((char) => char?.name);
 
@@ -86,7 +86,7 @@ function App() {
         setGameStart={setGameStart}
         count={remainingCount}
         gameOver={gameOver}
-        foundCharacters={foundCharacters}
+        foundCharacterNames={foundCharacterNames}
       />
       <MainImage
         setImageLoaded={setMainImageLoaded}

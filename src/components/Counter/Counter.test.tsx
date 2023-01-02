@@ -6,13 +6,13 @@ import Counter from "./Counter";
 
 describe("Counter", () => {
   it("renders the count number", () => {
-    render(<Counter count={2} foundCharacters={[]} />);
+    render(<Counter count={2} foundCharacterNames={[]} />);
     const element = screen.getByText("2");
     expect(element).toBeVisible();
   });
 
   it("removes 'hidden' class from List when clicked", () => {
-    render(<Counter count={2} foundCharacters={[]} />);
+    render(<Counter count={2} foundCharacterNames={[]} />);
     const toggle = screen.getByRole("button");
 
     userEvent.click(toggle);

@@ -10,7 +10,7 @@ type Props = {
   setGameStart: React.Dispatch<React.SetStateAction<boolean>>;
   count: number;
   gameOver: boolean;
-  foundCharacters: string[];
+  foundCharacterNames: string[];
 };
 
 export default function Header({
@@ -18,7 +18,7 @@ export default function Header({
   setGameStart,
   count,
   gameOver,
-  foundCharacters,
+  foundCharacterNames,
 }: Props) {
   let timer = gameStart ? (
     <Timer gameOver={gameOver} />
@@ -33,7 +33,7 @@ export default function Header({
           onClick={() => setGameStart(false)}
         />
         {timer}
-        <Counter count={count} foundCharacters={foundCharacters} />
+        <Counter count={count} foundCharacterNames={foundCharacterNames} />
       </div>
     </header>
   );
