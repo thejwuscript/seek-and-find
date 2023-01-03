@@ -18,6 +18,9 @@ export default function DropdownList({ isShowing, foundCharacterNames }: Props) 
     fontSize: "20px",
     fontWeight: "600",
   };
+  const itemStyles = {
+    gap: "28px"
+  }
 
   return (
     <StyledEngineProvider injectFirst>
@@ -25,21 +28,21 @@ export default function DropdownList({ isShowing, foundCharacterNames }: Props) 
         <CharacterListItem
           imageSrc={farnsworth}
           name="Farnsworth"
-          itemStyles={{ gap: "28px" }}
+          itemStyles={itemStyles}
           textStyles={textStyles}
           isFound={foundCharacterNames.includes("Farnsworth")}
         />
         <CharacterListItem
           imageSrc={pacman}
           name="Pac-Man"
-          itemStyles={{ gap: "28px" }}
+          itemStyles={itemStyles}
           textStyles={textStyles}
           isFound={foundCharacterNames.includes("Pac-Man")}
         />
         <CharacterListItem
           imageSrc={mike}
           name="Mike"
-          itemStyles={{ gap: "28px" }}
+          itemStyles={itemStyles}
           textStyles={textStyles}
           isFound={foundCharacterNames.includes("Mike")}
         />
