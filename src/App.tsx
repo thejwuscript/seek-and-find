@@ -61,6 +61,20 @@ function App() {
     setCharacters(copiedListOfCharacters);
   };
 
+  useEffect(() => {
+    if (gameStart) {
+      const params = new URLSearchParams({
+        id: '99',
+        clickedX: '0',
+        clickedY: '0',
+        width: '1600',
+        height: '800',
+      });
+
+      fetch(`/.netlify/functions/validate-selection?${params}`)
+    }
+  }, [gameStart])
+
   const changeFeedback = (message: string = ""): void => {
     setFeedback(""); // empty string to dismount Feedback
     setTimeout(() => setFeedback(message), 0); // then mount Feedback again with the proper message
