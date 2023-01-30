@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Box from "@mui/material/Box";
@@ -11,13 +11,8 @@ import "./modal.css";
 
 export default function GameOverModal() {
   const navigate = useNavigate();
-  const minutes = useMemo((): string => {
-    return document.querySelector(".timer .minutes")!.textContent!;
-  }, []);
-
-  const seconds = useMemo((): string => {
-    return document.querySelector(".timer .seconds")!.textContent!;
-  }, []);
+  const minutes = document.querySelector(".timer .minutes")!.textContent!;
+  const seconds = document.querySelector(".timer .seconds")!.textContent!;
 
   const displayableTime = () => {
     const min = parseInt(minutes, 10);
