@@ -25,7 +25,7 @@ function App() {
     else document.body.style.overflowY = "overlay";
 
     return () => {
-      document.body.style.overflowY = "overlay";
+      document.body.style.overflowY = 'overlay';
     };
   }, [gameStart, gameOver]);
 
@@ -60,20 +60,6 @@ function App() {
     if (character) character.isFound = true;
     setCharacters(copiedListOfCharacters);
   };
-
-  useEffect(() => {
-    if (gameStart) {
-      const params = new URLSearchParams({
-        id: '99',
-        clickedX: '0',
-        clickedY: '0',
-        width: '1600',
-        height: '800',
-      });
-
-      fetch(`/.netlify/functions/validate-selection?${params}`)
-    }
-  }, [gameStart])
 
   const changeFeedback = (message: string = ""): void => {
     setFeedback(""); // empty string to dismount Feedback

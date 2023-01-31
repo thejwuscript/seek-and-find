@@ -1,0 +1,17 @@
+{
+  "imports": {
+    "firebase/app": "https://ga.jspm.io/npm:firebase@9.16.0/app/dist/esm/index.esm.js",
+    "firebase/firestore": "https://ga.jspm.io/npm:firebase@9.16.0/firestore/dist/esm/index.esm.js"
+  },
+  "scopes": {
+    "https://ga.jspm.io/": {
+      "@firebase/app": "https://ga.jspm.io/npm:@firebase/app@0.9.1/dist/esm/index.esm2017.js",
+      "@firebase/component": "https://ga.jspm.io/npm:@firebase/component@0.6.1/dist/esm/index.esm2017.js",
+      "@firebase/firestore": "https://ga.jspm.io/npm:@firebase/firestore@3.8.1/dist/index.esm2017.js",
+      "@firebase/logger": "https://ga.jspm.io/npm:@firebase/logger@0.4.0/dist/esm/index.esm2017.js",
+      "@firebase/util": "https://ga.jspm.io/npm:@firebase/util@1.9.0/dist/index.esm2017.js",
+      "@firebase/webchannel-wrapper": "https://ga.jspm.io/npm:@firebase/webchannel-wrapper@0.9.0/dist/index.esm2017.js",
+      "idb": "https://ga.jspm.io/npm:idb@7.0.1/build/index.js"
+    }
+  }
+}

@@ -45,7 +45,7 @@ export default function MainImage({
       height: height.toString(),
     });
 
-    fetch(`/.netlify/functions/validate-selection?${params}`)
+    fetch(`/validate-selection?${params}`)
       .then((res) => res.json())
       .then((data) => {
         if (data === null) {
